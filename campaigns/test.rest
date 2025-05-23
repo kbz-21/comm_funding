@@ -1,0 +1,19 @@
+### Create campaign with the registered user
+
+POST http://localhost:8000/api/campaigns/create/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ3OTUwOTAzLCJpYXQiOjE3NDc5NDkxMDMsImp0aSI6ImFkNTgxMzExYjc3NDRmZjI4YzkzZmUyNGZhMGMwYTUwIiwidXNlcl9pZCI6Mn0.bR3gNr-6hAnS_7iA08cfVnRqP1xTrDzTtjZuXBmqi1M
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary123
+
+------WebKitFormBoundary123
+Content-Disposition: form-data;x
+
+
+
+
+
+
+### Get campaign detail
+
+# GET http://localhost:8000/api/campaigns/1/
+GET http://localhost:8000/api/admin/review/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ3OTU0MTM4LCJpYXQiOjE3NDc5NTIzMzgsImp0aSI6IjcyMGI3MDRmYzk5MDQwYTU5NzMwNDg3YWFiMjM1ODk4IiwidXNlcl9pZCI6Mn0.VId0a7LGZaK8sd_yUGfgHjiqJdhXKVXTtkt6hHf7Ol8

@@ -1,0 +1,16 @@
+### Upload Video (as admin)
+
+POST http://127.0.0.1:8000/videos/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ3OTQ3NTM4LCJpYXQiOjE3NDc5NDU3MzgsImp0aSI6IjAxMThjNTFkZmE3NjQwYTBhNDJiM2UyZTEwYWVkMzdlIiwidXNlcl9pZCI6Mn0.ZVPfy9kPGaD4qswUggqYUsbEVNXWr9Czino5ESOHRIs
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary123
+
+------WebKitFormBoundary123
+Content-Disposition: form-data; name="title"
+
+Sample Video
+------WebKitFormBoundary123
+Content-Disposition: form-data; name="video_file"; filename="video.mp4"
+Content-Type: video/mp4
+
+< ./video.mp4
+------WebKitFormBoundary123--

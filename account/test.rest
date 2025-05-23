@@ -1,0 +1,39 @@
+### Register a new user
+POST http://localhost:8000/register/
+Content-Type: application/json
+
+
+{
+  
+  "first_name": "kaleab",
+  "last_name": "zewdie",
+  "email": "kalzed1921@gmail.com",
+  "password": "StrongPass123!",
+  "confirm_password": "StrongPass123!"
+}
+
+### Login with the registered user
+POST http://localhost:8000/login/
+Content-Type: application/json
+
+{
+  "email": "kaleabzewdie972@gmail.com",
+  "password": "StrongPass123!"
+}
+
+### Request password reset
+POST http://localhost:8000/reset-password/
+Content-Type: application/json
+
+{
+  "email": "kaleabzewdie972@gmail.com"
+}
+
+### Confirm password reset (replace <uid> and <token> with actual values from your email or server log)
+POST  http://localhost:8000/api/account/reset-password-confirm/MjQ/cpv82b-f47d5f654ed73028c6c0020315bab7c3/
+Content-Type: application/json
+
+{
+  "new_password": "NewStrongPass123!",
+  "confirm_password": "NewStrongPass123!"
+}
