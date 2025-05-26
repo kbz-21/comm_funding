@@ -1,11 +1,49 @@
 ### Create campaign with the registered user
 
 POST http://localhost:8000/api/campaigns/create/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ3OTUwOTAzLCJpYXQiOjE3NDc5NDkxMDMsImp0aSI6ImFkNTgxMzExYjc3NDRmZjI4YzkzZmUyNGZhMGMwYTUwIiwidXNlcl9pZCI6Mn0.bR3gNr-6hAnS_7iA08cfVnRqP1xTrDzTtjZuXBmqi1M
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MjUzODkzLCJpYXQiOjE3NDgyNTIwOTMsImp0aSI6IjRhMjY5MWEwOGQ2ODRmYzE5NjFlMTM2YTlmOWFiODg5IiwidXNlcl9pZCI6Mn0.StzPRSF3Y6HHNFwM_JptWKy9JW04OuSM_bIF9kRKO_0
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary123
 
 ------WebKitFormBoundary123
-Content-Disposition: form-data;x
+Content-Disposition: form-data; name="title"
+
+New Test Campaign
+------WebKitFormBoundary123
+Content-Disposition: form-data; name="category"
+
+
+------WebKitFormBoundary123
+Content-Disposition: form-data; name="description"
+
+A sample campaign for educational funding
+------WebKitFormBoundary123
+Content-Disposition: form-data; name="goal_amount"
+
+5000
+------WebKitFormBoundary123
+Content-Disposition: form-data; name="starting_date"
+
+2025-05-15
+------WebKitFormBoundary123
+Content-Disposition: form-data; name="ending_date"
+
+2025-06-15
+------WebKitFormBoundary123
+Content-Disposition: form-data; name="location"
+
+Adama
+------WebKitFormBoundary123
+Content-Disposition: form-data; name="image"; filename="test.png"
+Content-Type: image/png
+
+< ./test.png
+------WebKitFormBoundary123
+Content-Disposition: form-data; name="document"; filename="test.pdf"
+Content-Type: application/pdf
+
+< ./test.pdf
+------WebKitFormBoundary123--
+
 
 
 

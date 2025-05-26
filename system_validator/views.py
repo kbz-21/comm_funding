@@ -1,4 +1,3 @@
-import fuzzywuzzy
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -6,18 +5,14 @@ from .models import Hospital, DiseaseType, DoctorStamp
 from .utils import extract_text_from_pdf, pdf_to_images, extract_stamp_from_image, match_stamp
 import os
 import unicodedata
-
-
-#for checking stamp image
-# Set up logging
-from fuzzywuzzy import fuzz
 import logging
-logging.basicConfig(level=logging.DEBUG)
+from fuzzywuzzy import fuzz
+
 logger = logging.getLogger(__name__)
 
-
 def normalize(text):
-    return unicodedata.normalize("NFKD", text)
+    """Normalize text for comparison."""
+    return unicodedata.normalize("NFKD", text.lower().strip())
 
 class PDFValidationView(APIView):
     def post(self, request):
@@ -51,7 +46,12 @@ class PDFValidationView(APIView):
                 for hospital in approved_hospitals:
                     logger.debug(f"Checking hospital: {hospital}, In text: {hospital in normalized_text}")
 
-            disease_found = any(disease in normalized_text for disease in approved_diseases)
+            disease_found = False
+            for disease in approved_diseases:
+                if fuzz.partial_ratio(disease, normalized_text) > 90:
+                    disease_found = True
+                    logger.debug(f"Matched disease: {disease}")
+                    break
             logger.debug(f"Hospital found: {hospital_found}, Disease found: {disease_found}")
 
             images = pdf_to_images(pdf_path)
@@ -73,18 +73,13 @@ class PDFValidationView(APIView):
             if hospital_found and disease_found and stamp_matched:
                 result = 'Your document has been "ACCEPTED"'
                 reason = 'All requirements have been successfully met and verified.'
-                
-
             else:
                 result = 'Your document has been "REJECTED"'
                 reason = []
                 if not hospital_found:
-
-                    # (expected one of: {", ".join(approved_hospitals)})
-                    reason.append(f'This Hospital is not among the officially authorized hospitals to issue medical support letters ')
+                    reason.append('This Hospital is not among the officially authorized hospitals to issue medical support letters')
                 if not disease_found:
-                    #  (expected one of: {", ".join(approved_diseases)})
-                    reason.append(f'The submitted disease type is not recognized as one of the eligible critical conditions for medical support.')
+                    reason.append('The submitted disease type is not recognized as one of the eligible critical conditions for medical support.')
                 if not stamp_matched:
                     reason.append("This doctor is not recognized as an authorized approver for medical support.")
                 reason = ', '.join(reason)
@@ -98,6 +93,3 @@ class PDFValidationView(APIView):
                 os.remove(pdf_path)
 
         return Response({'result': result, 'reason': reason})
-
-
-

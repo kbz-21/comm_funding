@@ -1,12 +1,12 @@
 ### Test PDF Validation Endpoint
 
 POST http://127.0.0.1:8000/system_validator/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MDM2MzEwLCJpYXQiOjE3NDgwMzQ1MTAsImp0aSI6IjUzNGZhN2E3MzI3MDRiNzViNTg0NWEyMWQwZWUwMzQ2IiwidXNlcl9pZCI6Mn0.AvJWz5_dkimUlPvidPgEkxH58h9MShEeFpqsUEjDpXg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MjQ0NTg1LCJpYXQiOjE3NDgyNDI3ODUsImp0aSI6ImE3MTE3NDY3N2VhYjQwYWU4OTA0ODg0NGFkOWQ3ZmIxIiwidXNlcl9pZCI6Mn0.FPAnxdBEgP4d66tDsAzuGzZZQ8pWkgnXNhBmwGxVqEU
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary123
 
 ------WebKitFormBoundary123
-Content-Disposition: form-data; name="pdf_file"; filename="Medical2.pdf"
+Content-Disposition: form-data; name="pdf_file"; filename="test.pdf"
 Content-Type: application/pdf
 
-< .\Medical2.pdf
+< .\test.pdf
 ------WebKitFormBoundary123--

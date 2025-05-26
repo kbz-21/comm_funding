@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-c8syymns8avox!_2$&58%eg!g)v@o8yx!vbdik30sq%9z6irtx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # thse are our new apps
-    'django_extensions',
+    # thse are our new app
     'rest_framework',
     'rest_framework_simplejwt',
     'account.apps.AccountConfig',
