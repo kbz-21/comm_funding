@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-c8syymns8avox!_2$&58%eg!g)v@o8yx!vbdik30sq%9z6irtx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -161,7 +161,8 @@ REST_FRAMEWORK = {
 
 # Add the following at the end of the file
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For development
-DEFAULT_FROM_EMAIL = 'noreply@communityfunding.com'
+#DEFAULT_FROM_EMAIL = 'noreply@communityfunding.com'
+DEFAULT_FROM_EMAIL = 'kalzed1921@gmail.com'
  
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -170,7 +171,9 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'kalzed1921@gmail.com'
 EMAIL_HOST_PASSWORD = 'rhwv toyf nvsz rcsk'
 
-
+# Celery settings
+CELERY_BROKER_URL = 'redis://localhost:6379/1'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
 
 
 

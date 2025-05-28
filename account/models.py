@@ -17,12 +17,10 @@ class CustomUserManager(UserManager):
         return self.create_user(email, password, **extra_fields)
 
 class CustomUser(AbstractUser):
-
     username = None  # Remove username field, use email instead
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
@@ -31,3 +29,14 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.email})"
+
+class Profile(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='profiles')
+    bio = models.TextField(max_length=500, blank=True)
+    phone_number = models.CharField(max_length=15, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Profile for {self.user.email}"

@@ -18,6 +18,9 @@ from .serializers import CampaignSerializer, CampaignListSerializer
 from system_validator.utils import validate_pdf
 import logging
 
+from .tasks import send_campaign_status_email  # This is the task we created to send emails
+from rest_framework import generics            # Importing generics for class-based views
+
 logger = logging.getLogger(__name__)
 
 class CampaignCreateAPI(APIView):
@@ -86,4 +89,13 @@ class AdminCampaignReviewAPI(APIView):
         
 
 
+# This is for email sending for non-medical campaigns
+class CampaignUpdateAPI(generics.UpdateAPIView):
+    queryset = Campaign.objects.all()
+    serializer_class = CampaignSerializer
+    permission_classes = [IsAdminUser]
 
+    def perform_update(self, serializer):
+        instance = serializer.save()
+        if instance.campaign_type != "Medical" and instance.status in ["Approved", "Rejected"]:
+            send_campaign_status_email.delay(instance.id)
